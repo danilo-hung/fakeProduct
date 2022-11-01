@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"> </script>
+    <link rel="stylesheet" href="/css/product.css">
+    <script src="/js/jquery.min.js"></script>
+    <title>
+        <%= title %>
+    </title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-primary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/products">products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/products/new">Create New Products</a>
+                    </li>
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid justify-content-start mt-2">
+        <div class="row row-cols-auto align-items-center">
+            <h1 class=" col fs-1">
+                <span class="badge bg-info rounded-pill">Edit</span> <span class="text-info">
+                    <%= p.name %>
+                </span>
+            </h1>
+            <div class="col">
+                <% if (p.category=='fruit' ){ %>
+                    <p class="badge rounded-pill text-bg-primary  m-0">
+                        <%= p.category %>
+                    </p>
+                    <% }else if (p.category=='vegetable' ){ %>
+                        <p class="badge rounded-pill text-bg-secondary m-0">
+                            <%= p.category %>
+                        </p>
+                        <% }else if (p.category=='dairy' ){ %>
+                            <p class="badge rounded-pill text-bg-success m-0">
+                                <%= p.category %>
+                            </p>
+                            <% } %>
+            </div>
+        </div>
+        <div class="container-fluid mt-2 justify-content-center">
+            <div class="row align-items-top p-3">
+                <div class="col-xl-7 col-md-12 pt-1">
+                    <img class="col-12 p_img" src="<%= p.img %>" alt="">
+                </div>
+                <div class="col-xl-5 col-md-12 row align-items-center">
+                    <div class="col px-5">
+                        <form class="row" action="/products/<%= p.id %>?_method=PATCH" method="post">
+                            <label class="col-4 my-3 col-form-label fw-bold text-primary" for="pName">Product Name :
+                            </label>
+                            <div class="col-8 my-3">
+                                <input class="form-control" type="text" name="pName" id="pName" value="<%= p.name %>">
+                            </div>
+                            <label class="col-4 my-3 col-form-label fw-bold text-primary" for="pPrice">Price : </label>
+                            <div class="col-8 my-3">
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input class="col form-control text-center" type="number" name="pPrice" id="pPrice"
+                                        value="<%= p.price%>" step="0.01">
+                                    <span class="input-group-text">/unit</span>
+                                </div>
+                            </div>
+                            <label class="col-4 my-3 col-form-label fw-bold text-primary" for="pCategory">Category :
+                            </label>
+                            <div class="col-8 my-3 ">
+                                <select class=" form-select" name="pCategory" id="pCategory">
+                                    <% for (let c of categories){ %> 
+                                        <option value="<%= c %>" <%= p.category === c ? 'selected' : "" %> > <%= c %> </option>
+                                    <% } %> 
+                                </select>
+                            </div>
+                            <label class="col-12 my-3 col-form-label fw-bold text-primary" for="pDescription">
+                                Description : </label>
+                            <div class="col-12 ps-2">
+                                <textarea class="form-control" name="pDescription" id="pDescription" cols="55"
+                                    rows="9"><%=p.description%></textarea>
+                            </div>
+                            <label class="col-4 my-3 col-form-label fw-bold text-primary" for="pImg">Image url : </label>
+                            <div class="col-8 my-3">
+                                <input class="form-control" type="text" name="pImg" id="pImg" value="<%= p.img %>">
+                            </div>
+                            <div class="col row justify-content-end p-0">
+                                <button class="col-3 align-self-center m-1 btn btn-info">submit</button>
+                                <a class="col-3 align-self-center m-1 text-center btn btn-secondary"
+                                    href="/products/<%= p._id%>">back</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

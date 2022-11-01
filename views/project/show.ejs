@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partial/head.ejs') %>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-primary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/products">products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/products/new">Create New Products</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid justify-content-start mt-2">
+        <div class="row row-cols-auto align-items-center">
+            <h1 class="text-info col fs-1">
+                <%= p.name %>
+            </h1>
+            <div class="col">
+                <a class="badge rounded-pill m-0 text-decoration-none <%= p.category === 'fruit' ? " text-bg-primary"
+                    : "" %>
+                    <%= p.category==='vegetable' ? "text-bg-secondary" : "" %>
+                        <%= p.category==='dairy' ? "text-bg-success" : "" %> " href="/products?category=<%= p.category
+                                %>">
+                                <%= p.category %>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-2">
+        <div class="row align-items-top p-3">
+            <div class="col-xl-7 col-md-12 pt-1">
+                <img class="col-12 p_img" src="<%= p.img %>" alt="">
+            </div>
+
+            <div class="col-xl-5 col-md-12 row align-items-center">
+                <div>
+
+                    <div class="px-5">
+                        <div class="row align-items-center">
+                            <p class="col fs-1 text-primary"> Introduction </p>
+                            <p class="col btn btn-outline-primary disabled">
+                                $ <%= p.price %> /unit
+                            </p>
+                        </div>
+                        <p class="lh-lg text-dark">
+                            <%= p.description %>
+                        </p>
+                    </div>
+                    <div class=" px-5 container-fluid">
+                        <div class="row align-content-end justify-content-end px-3">
+                            <div class="col-6 row">
+                                <a class="col btn btn-info text-center mx-1 my-1 "
+                                    href="/products/<%= p.id %>/edit">edit</a>
+                                <form class="col" action="/products/<%= p.id %>?_method=DELETE" method="post">
+                                    <button class="btn btn-secondary text-center mx-1 my-1 ">delete</button>
+                                </form>
+                                <a class="col btn btn-primary text-center mx-1 my-1 " href="/products">products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

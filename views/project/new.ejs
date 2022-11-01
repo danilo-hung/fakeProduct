@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"> </script>
+    <link rel="stylesheet" href="/css/product.css">
+    <script src="/js/jquery.min.js"></script>
+    <title>
+        <%= title %>
+    </title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-primary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " href="/products">products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Create New Products</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid mt-2">
+        <div class="row row-cols-auto justify-content-start align-items-center px-3">
+            <h1 class=" col fs-3 badge bg-info rounded-pill">
+                Add New
+            </h1>
+        </div>
+        <div class="container-fluid mt-2">
+            <div class="row p-1">
+                <div class="col-xl-6">
+                    <form class="row align-items-center" action="/products" method="post">
+                        <label class="col-4 my-3 col-form-label fw-bold text-primary" for="name">Product Name :
+                        </label>
+                        <div class="col-8 my-3">
+                            <input class="form-control" type="text" name="name" id="name" value="">
+                        </div>
+                        <label class="col-4 my-3 col-form-label fw-bold text-primary" for="price">Price : </label>
+                        <div class="col-8 my-3">
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input class="col form-control text-center" type="number" name="price" id="price"
+                                    value="" step="0.01">
+                                <span class="input-group-text">/unit</span>
+                            </div>
+                        </div>
+                        <label class="col-4 my-3 col-form-label fw-bold text-primary" for="category">Category :
+                        </label>
+                        <div class="col-8 my-3 ">
+                            <select class=" form-select" name="category" id="category">
+                                <option value="fruit">fruit</option>
+                                <option value="vegetable">vegetable</option>
+                                <option value="dairy">dairy</option>
+                            </select>
+                        </div>
+                        <label class="col-12 my-3 col-form-label fw-bold text-primary" for="description">
+                            Description : </label>
+                        <div class="col-12 ps-2">
+                            <textarea class="form-control" name="description" id="description" cols="55"
+                                rows="9"></textarea>
+                        </div>
+                        <label class="col-4 my-3 col-form-label fw-bold text-primary" for="img">Image url :
+                        </label>
+                        <div class="col-8 my-3">
+                            <input class="form-control" type="text" name="img" id="img" value="">
+                        </div>
+                        <div class="col row justify-content-end p-0">
+                            <button class="col-3 align-self-center m-1 btn btn-info">submit</button>
+                            <a class="col-3 align-self-center m-1 text-center btn btn-secondary"
+                                href="/products">back</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

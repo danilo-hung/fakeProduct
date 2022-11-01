@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"> </script>
+    <title>products</title>
+    <link rel="stylesheet" href="css/product.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-primary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="/">products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/products/new">Create New Products</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid pt-3">
+        <section class="row px-5 justify-content-between mx-2">
+            <h1 class="col-lg-4 col-sm-12 col-md-6 badge rounded-pill text-center align-self-center fs-1 
+            <%= category === 'Fruit' || 'All' ? 'bg-primary' : "" %>
+            <%= category ==='Vegetable' ? "bg-secondary" : "" %>
+            <%= category ==='Dairy' ? "bg-success "+"text-dark" : "" %> ">
+                <%= category %> Products
+            </h1>
+            <% if(category !='All' ){ %>
+                <a class="col-lg-2 col-sm-12 col-md-6 btn btn-outline-primary text-decoration-none text-center align-self-center"
+                    href="/products">Back to see all Products</a>
+                <% } %>
+        </section>
+    </div>
+    <div class="container-fluid justify-content-center">
+        <section class="row align-items-top content px-5">
+            <% for(let product of products ){ %>
+                <div class="col-lg-4 col-md-6 p-4">
+                    <div class="pt-3 row align-items-top border border-1 border-dark border-opacity-10 rounded-4 p-2">
+                        <div class="container col-12 justify-content-center">
+                            <img class="p_img " src="<%= product.img %>" alt="" srcset="" class="img-fluid">
+                        </div>
+                        <div class="col-12">
+                            <div class="row justify-content-around">
+                                <div class="col-lg-8 col-md-6 mt-2 ">
+                                    <a class="m-0 text-info text-decoration-none fs-3 lh-1"
+                                        href="/products/<%= product._id %>"><b>
+                                            <%= product.name %>
+                                        </b></a>
+                                    <p class="m-0">
+                                        Price: $ <%= product.price %> (/unit)
+                                    </p>
+                                    <a class="badge rounded-pill m-0 text-decoration-none 
+                                    <%= product.category === 'fruit' ? " text-bg-primary" : "" %>
+                                        <%= product.category==='vegetable' ? "text-bg-secondary" : "" %>
+                                            <%= product.category==='dairy' ? "text-bg-success" : "" %> "
+                                                href="/products?category=<%= product.category%>" >
+                                                    <%= product.category%>
+                                    </a>
+                                </div>
+                                <div class="col-lg-4 col-md-6 row align-items-end pt-2">
+                                    <a class="btn btn-info " href="/products/<%= product._id %>">details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        </section>
+    </div>
+
+</body>
+
+</html>
